@@ -1,5 +1,5 @@
 
-class MyBox extends THREE.Mesh {
+class Grua extends THREE.Mesh {
   constructor(gui,titleGui) {
     super();
 
@@ -12,15 +12,25 @@ class MyBox extends THREE.Mesh {
     // Como material se crea uno a partir de un color
     var boxMat = new THREE.MeshPhongMaterial({color: 0xCF0000});
 
+    var cilindGeom = new THREE.CylinderGeometry(0.5,0.5,4);
+
     // Ya podemos construir el Mesh
-    var box = new THREE.Mesh (boxGeom, boxMat);
+    var base = new THREE.Mesh (boxGeom, boxMat);
+    var cuerpo = new THREE.Mesh (cilindGeom, boxMat);
+
     // Y añadirlo como hijo del Object3D (el this)
-    this.add (box);
+    this.add (base);
+    this.add (cuerpo);
 
     // Las geometrías se crean centradas en el origen.
     // Como queremos que el sistema de referencia esté en la base,
     // subimos el Mesh de la caja la mitad de su altura
-    box.position.y = 0.5;
+    base.position.y = 0.5;
+    cuerpo.position.y = 3;
+    base.position.x = -22;
+    cuerpo.position.x = -22;
+    base.position.z = -22;
+    cuerpo.position.z = -22;
   }
 
   createGUI (gui,titleGui) {
@@ -56,7 +66,7 @@ class MyBox extends THREE.Mesh {
     }
 
     // Se crea una sección para los controles de la caja
-    var folder = gui.addFolder ('Controles de la Caja');
+    var folder = gui.addFolder ('Controles Grua');
     // Estas lineas son las que añaden los componentes de la interfaz
     // Las tres cifras indican un valor mínimo, un máximo y el incremento
     // El método   listen()   permite que si se cambia el valor de la variable en código, el deslizador de la interfaz se actualice

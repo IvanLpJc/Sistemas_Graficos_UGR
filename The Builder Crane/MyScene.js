@@ -34,7 +34,7 @@ class MyScene extends THREE.Scene {
     // Por último creamos el modelo.
     // El modelo puede incluir su parte de la interfaz gráfica de usuario. Le pasamos la referencia a
     // la gui y el texto bajo el que se agruparán los controles de la interfaz que añada el modelo.
-    this.model = new MyBox(this.gui, "Controles de la Caja");
+    this.model = new Grua(this.gui, "Controles Grua");
     this.add (this.model);
   }
 
@@ -68,8 +68,11 @@ class MyScene extends THREE.Scene {
     var geometryGround = new THREE.BoxGeometry (50,0.2,50);
 
     // El material se hará con una textura de madera
-    var texture = new THREE.TextureLoader().load('./imgs/wood.jpg');
-    var materialGround = new THREE.MeshPhongMaterial ({map: texture});
+    var texture1 = new THREE.TextureLoader().load('./imgs/wood.jpg');
+    var texture2 = new THREE.TextureLoader().load('./imgs/cemento.jpg');
+    var texture3 = new THREE.TextureLoader().load('./imgs/cesped.jpg');
+    var texture4 = new THREE.TextureLoader().load('./imgs/calle.jpg');
+    var materialGround = new THREE.MeshPhongMaterial ({map: texture4});
 
     // Ya se puede construir el Mesh
     var ground = new THREE.Mesh (geometryGround, materialGround);
