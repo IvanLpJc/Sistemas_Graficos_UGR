@@ -10,13 +10,17 @@ class Grua extends THREE.Mesh {
     // Un Mesh se compone de geometría y material
     var boxGeom = new THREE.BoxGeometry (4,1,4);
     // Como material se crea uno a partir de un color
-    var boxMat = new THREE.MeshPhongMaterial({color: 0xCF0000});
+    var boxMat = new THREE.MeshPhysicalMaterial({color: 0xFFBE01});
 
     var cilindGeom = new THREE.CylinderGeometry(1,1,28);
     var box2Geom = new THREE.BoxGeometry (35,0.8,2);
     var cilind2Geom = new THREE.CylinderGeometry(0.1,0.1,20);
     var cilind3Geom = new THREE.CylinderGeometry(0.4,0.4,0.2);
     var box3Geom = new THREE.BoxGeometry(4,4,4);
+
+    boxMat.metalness = 0.5;
+    boxMat.roughness = 0.3;
+    boxMat.envMapIntensity = 0.6;
 
 
     // Ya podemos construir el Mesh
