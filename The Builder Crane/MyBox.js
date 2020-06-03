@@ -8,29 +8,48 @@ class Grua extends THREE.Mesh {
     this.createGUI(gui,titleGui);
 
     // Un Mesh se compone de geometría y material
-    var boxGeom = new THREE.BoxGeometry (1,1,1);
+    var boxGeom = new THREE.BoxGeometry (4,1,4);
     // Como material se crea uno a partir de un color
     var boxMat = new THREE.MeshPhongMaterial({color: 0xCF0000});
 
-    var cilindGeom = new THREE.CylinderGeometry(0.5,0.5,4);
+    var cilindGeom = new THREE.CylinderGeometry(1,1,28);
+    var box2Geom = new THREE.BoxGeometry (35,0.8,2);
+    var cilind2Geom = new THREE.CylinderGeometry(0.1,0.1,20);
+    var cilind3Geom = new THREE.CylinderGeometry(0.4,0.4,0.2);
+    var box3Geom = new THREE.BoxGeometry(4,4,4);
+
 
     // Ya podemos construir el Mesh
     var base = new THREE.Mesh (boxGeom, boxMat);
     var cuerpo = new THREE.Mesh (cilindGeom, boxMat);
+    var brazo = new THREE.Mesh (box2Geom, boxMat);
+    var cable = new THREE.Mesh (cilind2Geom, boxMat);
+    var gancho = new THREE.Mesh (cilind3Geom, boxMat);
+    var contrapeso = new THREE.Mesh (box3Geom, boxMat);
 
     // Y añadirlo como hijo del Object3D (el this)
     this.add (base);
     this.add (cuerpo);
+    this.add (brazo);
+    this.add (cable);
+    this.add (gancho);
+    this.add (contrapeso);
 
     // Las geometrías se crean centradas en el origen.
     // Como queremos que el sistema de referencia esté en la base,
     // subimos el Mesh de la caja la mitad de su altura
-    base.position.y = 0.5;
-    cuerpo.position.y = 3;
-    base.position.x = -22;
-    cuerpo.position.x = -22;
-    base.position.z = -22;
-    cuerpo.position.z = -22;
+    base.position.set (-22, 0.5, -22);
+
+    cuerpo.position.set (-22, 15, -22);
+
+    brazo.position.set (-12.5, 29, -22);
+
+    cable.position.set (-5.5, 19, -22);
+
+    gancho.position.set (-5.5, 9, -22);
+
+    contrapeso.position.set (-26, 27, -22);
+
   }
 
   createGUI (gui,titleGui) {
