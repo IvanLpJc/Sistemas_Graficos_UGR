@@ -65,17 +65,20 @@ class MyScene extends THREE.Scene {
     // El suelo es un Mesh, necesita una geometría y un material.
 
     // La geometría es una caja con muy poca altura
-    var geometryGround = new THREE.BoxGeometry (50,0.2,50);
+    var sueloConstruccion = new THREE.BoxGeometry (50,0.2,50);
+    var sueloBloques = new THREE.BoxGeometry(25,0.2,25);
 
     // El material se hará con una textura de madera
     var texture1 = new THREE.TextureLoader().load('./imgs/wood.jpg');
     var texture2 = new THREE.TextureLoader().load('./imgs/cemento.jpg');
     var texture3 = new THREE.TextureLoader().load('./imgs/cesped.jpg');
     var texture4 = new THREE.TextureLoader().load('./imgs/calle.jpg');
-    var materialGround = new THREE.MeshPhongMaterial ({map: texture4});
+    var texturaSuelo1 = new THREE.MeshPhongMaterial ({map: texture4});
+    var texturaSuelo2 = new THREE.MeshPhongMaterial ({map: texture2});
 
     // Ya se puede construir el Mesh
-    var ground = new THREE.Mesh (geometryGround, materialGround);
+    var ground = new THREE.Mesh (sueloConstruccion, texturaSuelo1);
+    var ground2 = new THREE.Mesh (sueloBloques, texturaSuelo2);
 
     // Todas las figuras se crean centradas en el origen.
     // El suelo lo bajamos la mitad de su altura para que el origen del mundo se quede en su lado superior
@@ -83,6 +86,9 @@ class MyScene extends THREE.Scene {
 
     // Que no se nos olvide añadirlo a la escena, que en este caso es  this
     this.add (ground);
+    this.add (ground2);
+
+    ground2.position.set (-37.5,0,0);
   }
 
   createGUI () {
