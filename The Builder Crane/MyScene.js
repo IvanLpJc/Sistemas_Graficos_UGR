@@ -102,6 +102,7 @@ class MyScene extends THREE.Scene {
       // En el contexto de una función   this   alude a la función
       this.lightIntensity = 0.5;
       this.axisOnOff = true;
+      this.crearBase = false;
     }
 
     // Se crea una sección para los controles de esta clase
@@ -112,6 +113,10 @@ class MyScene extends THREE.Scene {
 
     // Y otro para mostrar u ocultar los ejes
     folder.add (this.guiControls, 'axisOnOff').name ('Mostrar ejes : ');
+
+    var bloques = gui.addFolder ('Añadir bloques');
+
+    bloques.add (this.guiControls, 'crearBase').name ('Crear base casa básico : ');
 
     return gui;
   }
@@ -188,6 +193,7 @@ class MyScene extends THREE.Scene {
 
     // Se muestran o no los ejes según lo que idique la GUI
     this.axis.visible = this.guiControls.axisOnOff;
+
 
     // Se actualiza la posición de la cámara según su controlador
     this.cameraControl.update();
